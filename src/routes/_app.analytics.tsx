@@ -79,8 +79,8 @@ function Analytics() {
           <ResponsiveContainer width="100%" height={320}>
             <ScatterChart>
               <CartesianGrid stroke="rgba(255,255,255,0.06)" />
-              <XAxis dataKey="x" name="Demand" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={fmtNum} />
-              <YAxis dataKey="y" name="Generation" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={fmtNum} />
+              <XAxis dataKey="x" name="Demand" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(v) => fmtNum(v)} />
+              <YAxis dataKey="y" name="Generation" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(v) => fmtNum(v)} />
               <ZAxis dataKey="z" range={[60, 400]} />
               <Tooltip cursor={{ strokeDasharray: "3 3" }} contentStyle={tooltipStyle} formatter={(v: number) => fmtNum(v)} />
               <Scatter data={scatter} fill="#7cc4ff" />
@@ -94,7 +94,7 @@ function Analytics() {
             <LineChart data={daily.slice(-120)}>
               <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey="date" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(v) => v.slice(5)} />
-              <YAxis tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={fmtNum} />
+              <YAxis tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(v) => fmtNum(v)} />
               <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => fmtNum(v) + " MW"} />
               <Line dataKey="peak" stroke="#f0b849" strokeWidth={2} dot={false} />
               <Line dataKey="demand" stroke="#7cc4ff" strokeWidth={2} dot={false} />
@@ -146,7 +146,7 @@ function Analytics() {
           <BarChart data={states.slice(0, 12)}>
             <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey="state" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} angle={-25} textAnchor="end" height={70} />
-            <YAxis tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={fmtNum} />
+            <YAxis tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(v) => fmtNum(v)} />
             <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => fmtNum(v)} />
             <Legend />
             <Bar dataKey="solar" stackId="a" fill="#f0b849" />

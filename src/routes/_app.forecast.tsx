@@ -119,7 +119,7 @@ function Forecast() {
             </defs>
             <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
             <XAxis dataKey="date" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(v) => v.slice(5)} />
-            <YAxis tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={fmtNum} />
+            <YAxis tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(v) => fmtNum(v)} />
             <Tooltip contentStyle={tooltipStyle} formatter={(v: number) => fmtNum(v) + " MW"} />
             <Area dataKey="upper" stroke="none" fill="url(#band)" />
             <Area dataKey="lower" stroke="none" fill="rgba(20,22,32,1)" />

@@ -101,7 +101,7 @@ function Live() {
               </defs>
               <CartesianGrid stroke="rgba(255,255,255,0.06)" vertical={false} />
               <XAxis dataKey="t" tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(t) => new Date(t).toLocaleTimeString().slice(3, 8)} />
-              <YAxis tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={fmtNum} />
+              <YAxis tick={{ fill: "var(--muted-foreground)", fontSize: 10 }} tickFormatter={(v) => fmtNum(v)} />
               <Tooltip contentStyle={{ background: "rgba(20,22,32,0.95)", border: "1px solid rgba(255,255,255,0.1)", borderRadius: 12, fontSize: 12 }} formatter={(v: number) => fmtNum(v) + " MW"} />
               <Area type="monotone" dataKey="demand" stroke="#7cc4ff" fill="url(#ld)" strokeWidth={2} isAnimationActive={false} />
               <Area type="monotone" dataKey="gen" stroke="#67e0c8" fill="transparent" strokeWidth={2} isAnimationActive={false} />

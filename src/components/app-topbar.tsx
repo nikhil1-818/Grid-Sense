@@ -1,7 +1,7 @@
 import { SidebarTrigger } from "@/components/ui/sidebar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Bell, Command, Moon, Search, Sun, ChevronDown } from "lucide-react";
+import { Bell, Command, Moon, Search, Sun, ChevronDown, LogOut } from "lucide-react";
 import { useData } from "@/lib/data-store";
 import {
   DropdownMenu,
@@ -11,12 +11,35 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { useRouterState } from "@tanstack/react-router";
+import { useRouterState, useNavigate } from "@tanstack/react-router";
+import { useEffect, useState } from "react";
+import { supabase } from "@/integrations/supabase/client";
+import { useQueryClient } from "@tanstack/react-query";
+import { toast } from "sonner";
 
 export function AppTopbar() {
   const { theme, setTheme, dataset } = useData();
   const pathname = useRouterState({ select: (r) => r.location.pathname });
   const crumb = pathname.slice(1) || "dashboard";
+  const navigate = useNavigate();
+  const queryClient = useQueryClient();
+  const [userLabel, setUserLabel] = useState<string>("Operator");
+
+  useEffect(() => {
+    supabase.auth.getUser().then(({ data }) => {
+      const u = data.user;
+      if (u) setUserLabel(u.email ?? u.phone ?? "Operator");
+    });
+  }, []);
+
+  const handleSignOut = async () => {
+    await queryClient.cancelQueries();
+    queryClient.clear();
+    await supabase.auth.signOut();
+    toast.success("Signed out");
+    navigate({ to: "/auth", replace: true });
+  };
+
   return (
     <header className="sticky top-0 z-30 h-14 border-b border-border/60 bg-background/60 backdrop-blur-xl">
       <div className="flex h-full items-center gap-3 px-4">
@@ -54,13 +77,13 @@ export function AppTopbar() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" size="sm" className="gap-2 h-9">
                 <div className="h-6 w-6 rounded-full bg-gradient-to-br from-primary to-accent" />
-                <span className="hidden md:inline text-sm">Operator</span>
+                <span className="hidden md:inline text-sm max-w-[140px] truncate">{userLabel}</span>
                 <ChevronDown className="h-3.5 w-3.5 opacity-60" />
               </Button>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>
-                <div className="text-sm">Grid Operator</div>
+                <div className="text-sm truncate">{userLabel}</div>
                 <div className="text-xs text-muted-foreground font-normal">
                   {dataset ? dataset.fileName : "No dataset loaded"}
                 </div>
@@ -70,7 +93,10 @@ export function AppTopbar() {
               <DropdownMenuItem>Organization</DropdownMenuItem>
               <DropdownMenuItem>API keys</DropdownMenuItem>
               <DropdownMenuSeparator />
-              <DropdownMenuItem>Sign out</DropdownMenuItem>
+              <DropdownMenuItem onClick={handleSignOut} className="text-destructive focus:text-destructive">
+                <LogOut className="h-4 w-4 mr-2" />
+                Sign out
+              </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
         </div>

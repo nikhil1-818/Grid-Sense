@@ -9,38 +9,201 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as AppRouteImport } from './routes/_app'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AppUploadRouteImport } from './routes/_app.upload'
+import { Route as AppSettingsRouteImport } from './routes/_app.settings'
+import { Route as AppReportsRouteImport } from './routes/_app.reports'
+import { Route as AppProcessingRouteImport } from './routes/_app.processing'
+import { Route as AppLiveRouteImport } from './routes/_app.live'
+import { Route as AppInsightsRouteImport } from './routes/_app.insights'
+import { Route as AppInfrastructureRouteImport } from './routes/_app.infrastructure'
+import { Route as AppHelpRouteImport } from './routes/_app.help'
+import { Route as AppForecastRouteImport } from './routes/_app.forecast'
+import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
+import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
+import { Route as AppAlertsRouteImport } from './routes/_app.alerts'
 
+const AppRoute = AppRouteImport.update({
+  id: '/_app',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AppUploadRoute = AppUploadRouteImport.update({
+  id: '/upload',
+  path: '/upload',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppSettingsRoute = AppSettingsRouteImport.update({
+  id: '/settings',
+  path: '/settings',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppReportsRoute = AppReportsRouteImport.update({
+  id: '/reports',
+  path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProcessingRoute = AppProcessingRouteImport.update({
+  id: '/processing',
+  path: '/processing',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppLiveRoute = AppLiveRouteImport.update({
+  id: '/live',
+  path: '/live',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInsightsRoute = AppInsightsRouteImport.update({
+  id: '/insights',
+  path: '/insights',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppInfrastructureRoute = AppInfrastructureRouteImport.update({
+  id: '/infrastructure',
+  path: '/infrastructure',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppHelpRoute = AppHelpRouteImport.update({
+  id: '/help',
+  path: '/help',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppForecastRoute = AppForecastRouteImport.update({
+  id: '/forecast',
+  path: '/forecast',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppDashboardRoute = AppDashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAnalyticsRoute = AppAnalyticsRouteImport.update({
+  id: '/analytics',
+  path: '/analytics',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppAlertsRoute = AppAlertsRouteImport.update({
+  id: '/alerts',
+  path: '/alerts',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/alerts': typeof AppAlertsRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/forecast': typeof AppForecastRoute
+  '/help': typeof AppHelpRoute
+  '/infrastructure': typeof AppInfrastructureRoute
+  '/insights': typeof AppInsightsRoute
+  '/live': typeof AppLiveRoute
+  '/processing': typeof AppProcessingRoute
+  '/reports': typeof AppReportsRoute
+  '/settings': typeof AppSettingsRoute
+  '/upload': typeof AppUploadRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/alerts': typeof AppAlertsRoute
+  '/analytics': typeof AppAnalyticsRoute
+  '/dashboard': typeof AppDashboardRoute
+  '/forecast': typeof AppForecastRoute
+  '/help': typeof AppHelpRoute
+  '/infrastructure': typeof AppInfrastructureRoute
+  '/insights': typeof AppInsightsRoute
+  '/live': typeof AppLiveRoute
+  '/processing': typeof AppProcessingRoute
+  '/reports': typeof AppReportsRoute
+  '/settings': typeof AppSettingsRoute
+  '/upload': typeof AppUploadRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/_app': typeof AppRouteWithChildren
+  '/_app/alerts': typeof AppAlertsRoute
+  '/_app/analytics': typeof AppAnalyticsRoute
+  '/_app/dashboard': typeof AppDashboardRoute
+  '/_app/forecast': typeof AppForecastRoute
+  '/_app/help': typeof AppHelpRoute
+  '/_app/infrastructure': typeof AppInfrastructureRoute
+  '/_app/insights': typeof AppInsightsRoute
+  '/_app/live': typeof AppLiveRoute
+  '/_app/processing': typeof AppProcessingRoute
+  '/_app/reports': typeof AppReportsRoute
+  '/_app/settings': typeof AppSettingsRoute
+  '/_app/upload': typeof AppUploadRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths:
+    | '/'
+    | '/alerts'
+    | '/analytics'
+    | '/dashboard'
+    | '/forecast'
+    | '/help'
+    | '/infrastructure'
+    | '/insights'
+    | '/live'
+    | '/processing'
+    | '/reports'
+    | '/settings'
+    | '/upload'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to:
+    | '/'
+    | '/alerts'
+    | '/analytics'
+    | '/dashboard'
+    | '/forecast'
+    | '/help'
+    | '/infrastructure'
+    | '/insights'
+    | '/live'
+    | '/processing'
+    | '/reports'
+    | '/settings'
+    | '/upload'
+  id:
+    | '__root__'
+    | '/'
+    | '/_app'
+    | '/_app/alerts'
+    | '/_app/analytics'
+    | '/_app/dashboard'
+    | '/_app/forecast'
+    | '/_app/help'
+    | '/_app/infrastructure'
+    | '/_app/insights'
+    | '/_app/live'
+    | '/_app/processing'
+    | '/_app/reports'
+    | '/_app/settings'
+    | '/_app/upload'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AppRoute: typeof AppRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/_app': {
+      id: '/_app'
+      path: ''
+      fullPath: '/'
+      preLoaderRoute: typeof AppRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -48,22 +211,129 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/_app/upload': {
+      id: '/_app/upload'
+      path: '/upload'
+      fullPath: '/upload'
+      preLoaderRoute: typeof AppUploadRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/settings': {
+      id: '/_app/settings'
+      path: '/settings'
+      fullPath: '/settings'
+      preLoaderRoute: typeof AppSettingsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/reports': {
+      id: '/_app/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/processing': {
+      id: '/_app/processing'
+      path: '/processing'
+      fullPath: '/processing'
+      preLoaderRoute: typeof AppProcessingRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/live': {
+      id: '/_app/live'
+      path: '/live'
+      fullPath: '/live'
+      preLoaderRoute: typeof AppLiveRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/insights': {
+      id: '/_app/insights'
+      path: '/insights'
+      fullPath: '/insights'
+      preLoaderRoute: typeof AppInsightsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/infrastructure': {
+      id: '/_app/infrastructure'
+      path: '/infrastructure'
+      fullPath: '/infrastructure'
+      preLoaderRoute: typeof AppInfrastructureRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/help': {
+      id: '/_app/help'
+      path: '/help'
+      fullPath: '/help'
+      preLoaderRoute: typeof AppHelpRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/forecast': {
+      id: '/_app/forecast'
+      path: '/forecast'
+      fullPath: '/forecast'
+      preLoaderRoute: typeof AppForecastRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/dashboard': {
+      id: '/_app/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof AppDashboardRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/analytics': {
+      id: '/_app/analytics'
+      path: '/analytics'
+      fullPath: '/analytics'
+      preLoaderRoute: typeof AppAnalyticsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/alerts': {
+      id: '/_app/alerts'
+      path: '/alerts'
+      fullPath: '/alerts'
+      preLoaderRoute: typeof AppAlertsRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
+interface AppRouteChildren {
+  AppAlertsRoute: typeof AppAlertsRoute
+  AppAnalyticsRoute: typeof AppAnalyticsRoute
+  AppDashboardRoute: typeof AppDashboardRoute
+  AppForecastRoute: typeof AppForecastRoute
+  AppHelpRoute: typeof AppHelpRoute
+  AppInfrastructureRoute: typeof AppInfrastructureRoute
+  AppInsightsRoute: typeof AppInsightsRoute
+  AppLiveRoute: typeof AppLiveRoute
+  AppProcessingRoute: typeof AppProcessingRoute
+  AppReportsRoute: typeof AppReportsRoute
+  AppSettingsRoute: typeof AppSettingsRoute
+  AppUploadRoute: typeof AppUploadRoute
+}
+
+const AppRouteChildren: AppRouteChildren = {
+  AppAlertsRoute: AppAlertsRoute,
+  AppAnalyticsRoute: AppAnalyticsRoute,
+  AppDashboardRoute: AppDashboardRoute,
+  AppForecastRoute: AppForecastRoute,
+  AppHelpRoute: AppHelpRoute,
+  AppInfrastructureRoute: AppInfrastructureRoute,
+  AppInsightsRoute: AppInsightsRoute,
+  AppLiveRoute: AppLiveRoute,
+  AppProcessingRoute: AppProcessingRoute,
+  AppReportsRoute: AppReportsRoute,
+  AppSettingsRoute: AppSettingsRoute,
+  AppUploadRoute: AppUploadRoute,
+}
+
+const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AppRoute: AppRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

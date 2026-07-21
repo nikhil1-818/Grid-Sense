@@ -77,21 +77,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "GridSense AI — Enterprise Electricity Intelligence" },
+      { title: "GridSense AI — AI-Powered Electricity Intelligence Platform" },
       {
         name: "description",
         content:
-          "GridSense AI is an enterprise-grade AI platform for electricity demand forecasting, renewable analytics, and real-time grid operations built for utilities and government agencies.",
+          "Upload CEA electricity data and unlock enterprise-grade forecasting, anomaly detection, renewable analytics and real-time grid operations.",
       },
       { name: "author", content: "GridSense AI" },
-      { property: "og:title", content: "GridSense AI — Enterprise Electricity Intelligence" },
+      { property: "og:title", content: "GridSense AI — AI-Powered Electricity Intelligence Platform" },
       {
         property: "og:description",
         content:
-          "AI-powered forecasting, analytics and alerting for national electricity grids.",
+          "Upload CEA electricity data and unlock enterprise-grade forecasting, anomaly detection, renewable analytics and real-time grid operations.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "GridSense AI — AI-Powered Electricity Intelligence Platform" },
+      { name: "twitter:description", content: "Upload CEA electricity data and unlock enterprise-grade forecasting, anomaly detection, renewable analytics and real-time grid operations." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c43902e7-efd6-4366-afde-1d760f5ca2a5/id-preview-ab1d4b1f--cadcb362-2067-464d-ae90-f91a1e7ddd5d.lovable.app-1784611234864.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/c43902e7-efd6-4366-afde-1d760f5ca2a5/id-preview-ab1d4b1f--cadcb362-2067-464d-ae90-f91a1e7ddd5d.lovable.app-1784611234864.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },

@@ -58,6 +58,18 @@ function Dashboard() {
   const daily = useMemo(() => (dataset ? byDate(dataset.rows).slice(-90) : []), [dataset]);
   const states = useMemo(() => (dataset ? byState(dataset.rows).slice(0, 10) : []), [dataset]);
 
+  const regionRadar = useMemo(() => {
+    if (!dataset) return [];
+    const map = new Map<string, { region: string; demand: number; generation: number }>();
+    for (const r of dataset.rows) {
+      const cur = map.get(r.region) ?? { region: r.region, demand: 0, generation: 0 };
+      cur.demand += r.demand;
+      cur.generation += r.generation;
+      map.set(r.region, cur);
+    }
+    return Array.from(map.values());
+  }, [dataset]);
+
   if (!dataset || !s) return <EmptyDataset />;
 
   const mix = [
@@ -67,17 +79,6 @@ function Dashboard() {
     { name: "Thermal", value: s.totalThermal },
     { name: "Nuclear", value: s.totalNuclear },
   ];
-
-  const regionRadar = useMemo(() => {
-    const map = new Map<string, { region: string; demand: number; generation: number }>();
-    for (const r of dataset.rows) {
-      const cur = map.get(r.region) ?? { region: r.region, demand: 0, generation: 0 };
-      cur.demand += r.demand;
-      cur.generation += r.generation;
-      map.set(r.region, cur);
-    }
-    return Array.from(map.values());
-  }, [dataset.rows]);
 
   return (
     <div className="mx-auto max-w-[1600px] px-6 py-8">

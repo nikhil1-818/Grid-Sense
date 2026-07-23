@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { useData } from "@/lib/data-store";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/_app/settings")({
   component: Settings,
@@ -34,7 +35,7 @@ function Settings() {
           <Row label="Full Name"><Input defaultValue="Grid Operator" /></Row>
           <Row label="Email"><Input defaultValue="operator@grid.gov" /></Row>
           <Row label="Role"><Input defaultValue="Chief Analyst" /></Row>
-          <Button className="glow">Save changes</Button>
+          <Button className="glow" onClick={() => toast.success("Profile saved")}>Save changes</Button>
         </TabsContent>
 
         <TabsContent value="org" className="glass rounded-2xl p-6 mt-4 space-y-4">

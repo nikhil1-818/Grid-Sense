@@ -19,6 +19,7 @@ export type Database = {
           body: string | null
           created_at: string
           id: string
+          key: string | null
           link: string | null
           read_at: string | null
           severity: string
@@ -29,6 +30,7 @@ export type Database = {
           body?: string | null
           created_at?: string
           id?: string
+          key?: string | null
           link?: string | null
           read_at?: string | null
           severity?: string
@@ -39,6 +41,7 @@ export type Database = {
           body?: string | null
           created_at?: string
           id?: string
+          key?: string | null
           link?: string | null
           read_at?: string | null
           severity?: string

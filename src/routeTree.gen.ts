@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AppUploadRouteImport } from './routes/_app.upload'
 import { Route as AppSettingsRouteImport } from './routes/_app.settings'
 import { Route as AppReportsRouteImport } from './routes/_app.reports'
+import { Route as AppProfileRouteImport } from './routes/_app.profile'
 import { Route as AppProcessingRouteImport } from './routes/_app.processing'
 import { Route as AppLiveRouteImport } from './routes/_app.live'
 import { Route as AppInsightsRouteImport } from './routes/_app.insights'
@@ -24,6 +25,7 @@ import { Route as AppForecastRouteImport } from './routes/_app.forecast'
 import { Route as AppDashboardRouteImport } from './routes/_app.dashboard'
 import { Route as AppAnalyticsRouteImport } from './routes/_app.analytics'
 import { Route as AppAlertsRouteImport } from './routes/_app.alerts'
+import { Route as AppStateStateRouteImport } from './routes/_app.state.$state'
 
 const AuthRoute = AuthRouteImport.update({
   id: '/auth',
@@ -52,6 +54,11 @@ const AppSettingsRoute = AppSettingsRouteImport.update({
 const AppReportsRoute = AppReportsRouteImport.update({
   id: '/reports',
   path: '/reports',
+  getParentRoute: () => AppRoute,
+} as any)
+const AppProfileRoute = AppProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
   getParentRoute: () => AppRoute,
 } as any)
 const AppProcessingRoute = AppProcessingRouteImport.update({
@@ -99,6 +106,11 @@ const AppAlertsRoute = AppAlertsRouteImport.update({
   path: '/alerts',
   getParentRoute: () => AppRoute,
 } as any)
+const AppStateStateRoute = AppStateStateRouteImport.update({
+  id: '/state/$state',
+  path: '/state/$state',
+  getParentRoute: () => AppRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -112,9 +124,11 @@ export interface FileRoutesByFullPath {
   '/insights': typeof AppInsightsRoute
   '/live': typeof AppLiveRoute
   '/processing': typeof AppProcessingRoute
+  '/profile': typeof AppProfileRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/upload': typeof AppUploadRoute
+  '/state/$state': typeof AppStateStateRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -128,9 +142,11 @@ export interface FileRoutesByTo {
   '/insights': typeof AppInsightsRoute
   '/live': typeof AppLiveRoute
   '/processing': typeof AppProcessingRoute
+  '/profile': typeof AppProfileRoute
   '/reports': typeof AppReportsRoute
   '/settings': typeof AppSettingsRoute
   '/upload': typeof AppUploadRoute
+  '/state/$state': typeof AppStateStateRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -146,9 +162,11 @@ export interface FileRoutesById {
   '/_app/insights': typeof AppInsightsRoute
   '/_app/live': typeof AppLiveRoute
   '/_app/processing': typeof AppProcessingRoute
+  '/_app/profile': typeof AppProfileRoute
   '/_app/reports': typeof AppReportsRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/upload': typeof AppUploadRoute
+  '/_app/state/$state': typeof AppStateStateRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -164,9 +182,11 @@ export interface FileRouteTypes {
     | '/insights'
     | '/live'
     | '/processing'
+    | '/profile'
     | '/reports'
     | '/settings'
     | '/upload'
+    | '/state/$state'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -180,9 +200,11 @@ export interface FileRouteTypes {
     | '/insights'
     | '/live'
     | '/processing'
+    | '/profile'
     | '/reports'
     | '/settings'
     | '/upload'
+    | '/state/$state'
   id:
     | '__root__'
     | '/'
@@ -197,9 +219,11 @@ export interface FileRouteTypes {
     | '/_app/insights'
     | '/_app/live'
     | '/_app/processing'
+    | '/_app/profile'
     | '/_app/reports'
     | '/_app/settings'
     | '/_app/upload'
+    | '/_app/state/$state'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -250,6 +274,13 @@ declare module '@tanstack/react-router' {
       path: '/reports'
       fullPath: '/reports'
       preLoaderRoute: typeof AppReportsRouteImport
+      parentRoute: typeof AppRoute
+    }
+    '/_app/profile': {
+      id: '/_app/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof AppProfileRouteImport
       parentRoute: typeof AppRoute
     }
     '/_app/processing': {
@@ -315,6 +346,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppAlertsRouteImport
       parentRoute: typeof AppRoute
     }
+    '/_app/state/$state': {
+      id: '/_app/state/$state'
+      path: '/state/$state'
+      fullPath: '/state/$state'
+      preLoaderRoute: typeof AppStateStateRouteImport
+      parentRoute: typeof AppRoute
+    }
   }
 }
 
@@ -328,9 +366,11 @@ interface AppRouteChildren {
   AppInsightsRoute: typeof AppInsightsRoute
   AppLiveRoute: typeof AppLiveRoute
   AppProcessingRoute: typeof AppProcessingRoute
+  AppProfileRoute: typeof AppProfileRoute
   AppReportsRoute: typeof AppReportsRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppUploadRoute: typeof AppUploadRoute
+  AppStateStateRoute: typeof AppStateStateRoute
 }
 
 const AppRouteChildren: AppRouteChildren = {
@@ -343,9 +383,11 @@ const AppRouteChildren: AppRouteChildren = {
   AppInsightsRoute: AppInsightsRoute,
   AppLiveRoute: AppLiveRoute,
   AppProcessingRoute: AppProcessingRoute,
+  AppProfileRoute: AppProfileRoute,
   AppReportsRoute: AppReportsRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppUploadRoute: AppUploadRoute,
+  AppStateStateRoute: AppStateStateRoute,
 }
 
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)

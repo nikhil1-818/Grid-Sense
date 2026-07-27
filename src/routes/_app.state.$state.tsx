@@ -101,9 +101,9 @@ function StateDetail() {
       </motion.div>
 
       <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-        <KpiCard title="Total Demand" value={`${fmtNum(totalDemand)} MW`} icon={Bolt} />
-        <KpiCard title="Total Generation" value={`${fmtNum(totalGen)} MW`} icon={Zap} />
-        <KpiCard title="Peak Demand" value={`${fmtNum(peak)} MW`} icon={Gauge} />
+        <KpiCard label="Total Demand" value={`${fmtNum(totalDemand)} MW`} icon={Bolt} />
+        <KpiCard label="Total Generation" value={`${fmtNum(totalGen)} MW`} icon={Zap} />
+        <KpiCard label="Peak Demand" value={`${fmtNum(peak)} MW`} icon={Gauge} />
         <KpiCard
           title="Renewable Share"
           value={`${totalGen ? ((renewable / totalGen) * 100).toFixed(1) : "0"}%`}

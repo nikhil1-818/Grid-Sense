@@ -105,7 +105,7 @@ function StateDetail() {
         <KpiCard label="Total Generation" value={`${fmtNum(totalGen)} MW`} icon={Zap} />
         <KpiCard label="Peak Demand" value={`${fmtNum(peak)} MW`} icon={Gauge} />
         <KpiCard
-          title="Renewable Share"
+          label="Renewable Share"
           value={`${totalGen ? ((renewable / totalGen) * 100).toFixed(1) : "0"}%`}
           icon={Leaf}
         />

@@ -14,7 +14,120 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      notifications: {
+        Row: {
+          body: string | null
+          created_at: string
+          id: string
+          key: string | null
+          link: string | null
+          read_at: string | null
+          severity: string
+          title: string
+          user_id: string
+        }
+        Insert: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          key?: string | null
+          link?: string | null
+          read_at?: string | null
+          severity?: string
+          title: string
+          user_id: string
+        }
+        Update: {
+          body?: string | null
+          created_at?: string
+          id?: string
+          key?: string | null
+          link?: string | null
+          read_at?: string | null
+          severity?: string
+          title?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          email: string | null
+          full_name: string | null
+          id: string
+          notify_anomalies: boolean
+          notify_critical: boolean
+          notify_digest: boolean
+          notify_weekly: boolean
+          organization: string | null
+          region: string | null
+          role: string | null
+          timezone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id: string
+          notify_anomalies?: boolean
+          notify_critical?: boolean
+          notify_digest?: boolean
+          notify_weekly?: boolean
+          organization?: string | null
+          region?: string | null
+          role?: string | null
+          timezone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          full_name?: string | null
+          id?: string
+          notify_anomalies?: boolean
+          notify_critical?: boolean
+          notify_digest?: boolean
+          notify_weekly?: boolean
+          organization?: string | null
+          region?: string | null
+          role?: string | null
+          timezone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      support_requests: {
+        Row: {
+          created_at: string
+          id: string
+          message: string
+          status: string
+          subject: string
+          topic: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          message: string
+          status?: string
+          subject: string
+          topic: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          message?: string
+          status?: string
+          subject?: string
+          topic?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
